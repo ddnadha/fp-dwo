@@ -37,13 +37,13 @@ class ProductModel extends CI_Model
     {
         $sql = "";
         if ($tahun != 'all' && $bulan == 'all') {
-            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as terjual from fact_sales fs join product dp on fs.product_id =dp.product_id join time dt on fs.time_id =dt.time_id where dt.`year` =$tahun group by fs.product_id order by sum(fs.total_due) desc limit 5";
+            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as dibeli from fact_sales fs join product dp on fs.product_id =dp.product_id join time dt on fs.time_id =dt.time_id where dt.`year` =$tahun group by fs.product_id order by sum(fs.total_due) desc limit 5";
         } else  if ($tahun == 'all' && $bulan != 'all') {
-            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as terjual from fact_sales fs join product dp on fs.product_id =dp.product_id join time dt on fs.time_id =dt.time_id where dt.`month` ='$bulan'  group by fs.product_id order by sum(fs.total_due) desc limit 5";
+            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as dibeli from fact_sales fs join product dp on fs.product_id =dp.product_id join time dt on fs.time_id =dt.time_id where dt.`month` ='$bulan'  group by fs.product_id order by sum(fs.total_due) desc limit 5";
         } else  if ($tahun != 'all' && $bulan != 'all') {
-            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as terjual from fact_sales fs join product dp on fs.product_id =dp.product_id join time dt on fs.time_id =dt.time_id where (dt.`year` =$tahun and dt.`month`='$bulan') group by fs.product_id order by sum(fs.total_due) desc limit 5";
+            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as dibeli from fact_sales fs join product dp on fs.product_id =dp.product_id join time dt on fs.time_id =dt.time_id where (dt.`year` =$tahun and dt.`month`='$bulan') group by fs.product_id order by sum(fs.total_due) desc limit 5";
         } else {
-            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as terjual from fact_sales fs join product dp on fs.product_id =dp.product_id group by fs.product_id order by sum(fs.total_due) desc limit 5";
+            $sql = "select dp.product_name as ProductName ,sum(fs.total_due) as dibeli from fact_sales fs join product dp on fs.product_id =dp.product_id group by fs.product_id order by sum(fs.total_due) desc limit 5";
         }
         return $this->db->query($sql)->result();
     }
