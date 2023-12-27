@@ -1,7 +1,7 @@
-$(async function () {
+$(function () {
 	$("#data_produk").DataTable();
 	
-	await $.ajax({
+	 $.ajax({
 		type: "POST",
 		url: base_url + "/Produk/topProdukSales",
 		data: {
@@ -146,7 +146,7 @@ $(async function () {
 		});
 	});
 
-	await $.ajax({
+	 $.ajax({
 		type: "POST", 
 		url: base_url + "/Produk/topProductPurchase",
 		data: {
@@ -292,7 +292,7 @@ $(async function () {
 		});
 	});
 
-	await $.ajax({
+	 $.ajax({
 		type: "POST", // Method pengiriman data bisa dengan GET atau POST
 		url: base_url + "/Produk/categorySales", // Isi dengan url/path file php yang dituju
 		dataType: "json",

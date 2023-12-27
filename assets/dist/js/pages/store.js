@@ -1,7 +1,7 @@
-$(async function () {
+$(function () {
 	$("#data_store").DataTable();
 
-	await $.ajax({
+	 $.ajax({
 		type: "POST",
 		url: base_url + "/Store/regionSales",
 		dataType: "json",
@@ -32,6 +32,8 @@ $(async function () {
 				d.data = element.drill;
 				b.push(d);
 			});
+			console.log(a)
+			console.log(b)
 			$("#chartStoreRegion").remove();
 			$("#chartStoreReg").append('<div id="chartStoreRegion"></div>');
 			Highcharts.chart("chartStoreRegion", {

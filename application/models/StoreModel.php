@@ -20,24 +20,13 @@ class StoreModel extends CI_Model
 
     function region()
     {
-        $sql = "select dp.country_region_name,
-            count(dp.store_id) as jumlah,
-            round((count(dp.store_id)*100) / count(s.store_id)) as persen 
-            from store dp 
-            cross join store s 
-            group by dp.store_id, s.store_id";
+        $sql = "select dp.country_region_name,count(*) as jumlah,round(((count(dp.store_id)*100)/s.total )) as persen from store dp cross join (select count(*) as total from store) s group by dp.country_region_name";
         return $this->db->query($sql)->result();
     }
 
     function territory($reg)
     {
-        $sql = "select dp.territory_name, 
-            count(dp.store_id) as jumlah, 
-            round(((count(dp.store_id)*100) / count(s.store_id) )) as persen 
-            from store dp 
-            cross join (select * from store p where p.country_region_name='$reg') s  
-            where dp.country_region_name='$reg' 
-            group by dp.territory_name";
+        $sql = "select dp.territory_name, count(*) as jumlah, round(((count(dp.store_id)*100)/s.total )) as persen from store dp cross join (select count(*) as total from store p where p.country_region_name='$reg') s  where dp.country_region_name='$reg' group by dp.territory_name";
 
         return $this->db->query($sql)->result();
     }

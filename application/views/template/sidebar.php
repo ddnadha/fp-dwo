@@ -11,7 +11,10 @@
                 <li class="nav-item">
                     <a href="<?php echo base_url('Dashboard') ?>" class="nav-link"><i class="nav-icon fas fa-home"></i><p>Dashboard</p></a>
                 </li>
-                
+                <li class="nav-item">
+                    <a href="<?php echo base_url('Sales') ?>" class="nav-link">
+                    <i class="nav-icon fas fa-money-bill"></i><p>Sales</p></a>
+                </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('Produk') ?>" class="nav-link">
                     <i class="nav-icon fas fa-box"></i><p>Product</p></a>
