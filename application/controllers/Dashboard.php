@@ -31,4 +31,16 @@ class Dashboard extends CI_Controller
             redirect('Auth');
         }
     }
+
+    public function fakta()
+    {
+        $tahun = $this->input->post('tahun');
+        $bulan = $this->input->post('bulan');
+
+        $data1 = $this->SalesModel->totalRevenue($tahun, $bulan);
+        $data2 = $this->SalesModel->avgRevenue($tahun, $bulan);
+
+        $callback = array('sales' => $data1, 'po' => $data2);
+        echo json_encode($callback);
+    }
 }

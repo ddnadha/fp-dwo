@@ -25,10 +25,10 @@
                                 <label>Tahun</label>
                                 <select class="form-control" id="tahun">
                                     <option value="all" selected>Semua</option>
-                                    <option value="2011">2001</option>
-                                    <option value="2012">2002</option>
-                                    <option value="2013">2003</option>
-                                    <option value="2014">2004</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
                                 </select>
                             </div>
                         </div>
@@ -75,10 +75,10 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3 id="pexpanses"></h3>
-                            <p>Purchase Expense</p>
+                            <p>Sales Revenue Average</p>
                         </div>
                         <div class="icon"><i class="ion ion-stats-bars"></i></div>
-                        <a href="<?php echo base_url('Purchase') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('Sales') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -125,6 +125,18 @@
                     </div>
                 </div>
             </div>  
+
+            <div class="card card-warning collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">Advenvtureworks Olap</h3>                    
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body p-10">
+                    <iframe name="mondrian" src="http://localhost:8081/mondrian" style="height: 500px; width:100%; border:none; align-content:center"> </iframe>
+                </div>
+            </div>            
         </div>
     </div>
 </div>

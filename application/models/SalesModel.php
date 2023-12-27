@@ -58,4 +58,9 @@ class SalesModel extends CI_Model
     {
         return $this->db->query('select DISTINCT(fact_sales_id), sum(order_quantity) as quantity, sum(total_due) as total from fact_sales GROUP BY fact_sales_id')->result();
     }
+
+    function avgRevenue()
+    {
+        return $this->db->query('select avg(total_due) as rata from fact_sales')->row()->rata;
+    }
 }
