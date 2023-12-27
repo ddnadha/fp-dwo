@@ -3,7 +3,7 @@ $(async function () {
 
 	await $.ajax({
 		type: "POST",
-		url: "http://localhost/adw2022/Store/regionSales",
+		url: "http://localhost/dwo23/Store/regionSales",
 		dataType: "json",
 		beforeSend: function (e) {
 			if (e && e.overrideMimeType) {
