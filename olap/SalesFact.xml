@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Schema name="PurchaseFact">
+
+  <!-- Sales -->
+  <Cube name="Sales" defaultMeasure="TotalDue">
+
+    <Table name="fact_sales"/>
+
+    <Dimension name="Time" foreignKey="time_id">
+      <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="time_id">
+        <Table name="time"/>
+        <Level name="year" column="year" type="Numeric" uniqueMembers="true" levelType="TimeYears"/>
+        <Level name="month" column="month" uniqueMembers="false" type="Numeric" levelType="TimeMonths"/>
+        <Level name="date" column="date" uniqueMembers="false" type="Numeric" levelType="TimeDays"/>
+      </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Product" foreignKey = "product_id">
+      <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="product_id">
+        <Table name="product"/>
+        <Level name="category" column="category"/>
+        <Level name="sub_category" column="sub_category"/>
+        <Level name="product_name" column="product_name"/>
+      </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Shipment" foreignKey = "shipment_id">
+      <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="shipment_id">
+        <Table name="shipment"/>
+        <Level name="shipment_name" column="shipment_name"/>
+      </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Store" foreignKey = "store_id">
+      <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="store_id">
+        <Table name="store"/>
+        <Level name="country_region_name" column="country_region_name"/>
+        <Level name="territory_name" column="territory_name"/>
+        <Level name="store_name" column="store_name"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- <Measure name="Total Incomes" column="SalesAmount" aggregator="sum" formatString="Standard"/> -->
+    <Measure name="TotalOrder" column="order_quantity" aggregator="sum" formatString="Standard"/>
+    <Measure name="TotalDue" column="total_due" aggregator="sum" formatString="Standard"/>
+    <!-- <Measure name="TotalOrder" column="SalesOrderNumber" aggregator="distinct-count" formatString="Standard"/> -->
+  </Cube>
+
+</Schema>
