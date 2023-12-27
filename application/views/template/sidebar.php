@@ -26,6 +26,11 @@
                     <a href="<?php echo base_url('Shipment') ?>" class="nav-link">
                     <i class="nav-icon fas fa-truck"></i><p>Shipment</p></a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="<?php echo base_url('Sales') ?>" class="nav-link">
+                    <i class="nav-icon fas fa-cash-register"></i><p>Sales</p></a>
+                </li>
             </ul>
         </nav>
     </div>
