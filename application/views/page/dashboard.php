@@ -117,11 +117,11 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3><?= $param['totalStore']  ?></h3>
-                            <p>Store</p>
+                            <h3><?= $param['totalSales']  ?></h3>
+                            <p>Total Sales</p>
                         </div>
-                        <div class="icon"><i class="fas fa-store"></i></div>
-                        <a href="<?php echo base_url('Territory') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <div class="icon"><i class="fas fa-cash-register"></i></div>
+                        <a href="<?php echo base_url('Sales') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>  
