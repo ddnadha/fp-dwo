@@ -16,7 +16,7 @@ $(async function () {
 	// Get context with jQuery - using jQuery's .get() method.
 	await $.ajax({
 		type: "POST", // Method pengiriman data bisa dengan GET atau POST
-		url: "http://localhost/adw2022/Dashboard/fakta", // Isi dengan url/path file php yang dituju
+		url: base_url + "/dashboard/fakta", // Isi dengan url/path file php yang dituju
 		data: {
 			tahun: $("#tahun").val(),
 			kuartal: $("#kuartal").val(),
@@ -93,7 +93,7 @@ $(async function () {
 	$("#gen").click(function () {
 		$.ajax({
 			type: "POST", // Method pengiriman data bisa dengan GET atau POST
-			url: "http://localhost/adw2022/Dashboard/fakta", // Isi dengan url/path file php yang dituju
+			url: url, // Isi dengan url/path file php yang dituju
 			data: {
 				tahun: $("#tahun").val(),
 				kuartal: $("#kuartal").val(),
