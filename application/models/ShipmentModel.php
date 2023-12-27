@@ -17,4 +17,19 @@ class ShipmentModel extends CI_Model
     {
         return $this->db->query('select * from shipment')->result();
     }
+
+    function topShipment($tahun, $bulan)
+    {
+        $sql = "";
+        if ($tahun != 'all' && $bulan == 'all') {
+            $sql = "SELECT s.shipment_name as name, COUNT(s.shipment_name) as total FROM fact_sales fs JOIN shipment s ON fs.shipment_id = s.shipment_id JOIN time t on fs.time_id = t.time_id WHERE t.year=$tahun GROUP BY s.shipment_name ORDER BY total DESC LIMIT 5";
+        } else  if ($tahun == 'all' && $bulan != 'all') {
+            $sql = "SELECT s.shipment_name as name, COUNT(s.shipment_name) as total FROM fact_sales fs JOIN shipment s ON fs.shipment_id = s.shipment_id JOIN time t on fs.time_id = t.time_id WHERE t.month='$bulan' GROUP BY s.shipment_name ORDER BY total DESC LIMIT 5";
+        } else  if ($tahun != 'all' && $bulan != 'all') {
+            $sql = "SELECT s.shipment_name as name, COUNT(s.shipment_name) as total FROM fact_sales fs JOIN shipment s ON fs.shipment_id = s.shipment_id JOIN time t on fs.time_id = t.time_id WHERE t.year=$tahun AND t.month='$bulan' GROUP BY s.shipment_name ORDER BY total DESC LIMIT 5";
+        } else {
+            $sql = "SELECT s.shipment_name AS name, COUNT(s.shipment_name) AS total FROM fact_sales fs JOIN shipment s ON fs.shipment_id = s.shipment_id GROUP BY s.shipment_name ORDER BY total DESC LIMIT 5";
+        }
+        return $this->db->query($sql)->result();
+    }
 }

@@ -30,4 +30,19 @@ class StoreModel extends CI_Model
 
         return $this->db->query($sql)->result();
     }
+
+    function topStore($tahun, $bulan)
+    {
+        $sql = "";
+        if ($tahun != 'all' && $bulan == 'all') {
+            $sql = "SELECT s.store_name as name, COUNT(s.store_name) as total FROM fact_sales fs JOIN store s ON fs.store_id = s.store_id JOIN time t on fs.time_id = t.time_id WHERE fs.store_id IS NOT NULL AND t.year=$tahun GROUP BY s.store_name ORDER BY total DESC LIMIT 5";
+        } else  if ($tahun == 'all' && $bulan != 'all') {
+            $sql = "SELECT s.store_name as name, COUNT(s.store_name) as total FROM fact_sales fs JOIN store s ON fs.store_id = s.store_id JOIN time t on fs.time_id = t.time_id WHERE fs.store_id IS NOT NULL AND t.month='$bulan' GROUP BY s.store_name ORDER BY total DESC LIMIT 5";
+        } else  if ($tahun != 'all' && $bulan != 'all') {
+            $sql = "SELECT s.store_name as name, COUNT(s.store_name) as total FROM fact_sales fs JOIN store s ON fs.store_id = s.store_id JOIN time t on fs.time_id = t.time_id WHERE fs.store_id IS NOT NULL AND t.year=$tahun AND t.month='$bulan' GROUP BY s.store_name ORDER BY total DESC LIMIT 5";
+        } else {
+            $sql = "SELECT s.store_name AS name, COUNT(s.store_name) AS total FROM fact_sales fs JOIN store s ON fs.store_id = s.store_id WHERE fs.store_id IS NOT NULL GROUP BY s.store_name ORDER BY total DESC LIMIT 5";
+        }
+        return $this->db->query($sql)->result();
+    }
 }

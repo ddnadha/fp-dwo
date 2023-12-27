@@ -25,4 +25,16 @@ class Shipment extends CI_Controller
             redirect('Auth');
         }
     }
+
+    public function topShipment()
+    {
+        $tahun = $this->input->post('tahun');
+        $bulan = $this->input->post('bulan');
+
+        $data = $this->ShipmentModel->topShipment($tahun, $bulan);
+
+        $callback = array('product' => $data);
+
+        echo json_encode($callback);
+    }
 }
