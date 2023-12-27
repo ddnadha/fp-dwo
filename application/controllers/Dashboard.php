@@ -8,6 +8,8 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->load->model('ProductModel');
+        $this->load->model('StoreModel');
+        $this->load->model('ShipmentModel');
     }
 
     public function index()
@@ -15,6 +17,8 @@ class Dashboard extends CI_Controller
         $dt = array();
         
         $dt['totalProduct'] = $this->ProductModel->count();
+        $dt['totalShipment'] = $this->ShipmentModel->count();
+        $dt['totalStore'] = $this->StoreModel->count();
 
         if ($this->session->userdata('logged_in')) {
             $this->data['view']    = 'page/dashboard';
@@ -24,18 +28,5 @@ class Dashboard extends CI_Controller
         } else {
             redirect('Auth');
         }
-    }
-
-    public function fakta()
-    {
-        $tahun = $this->input->post('tahun');
-        $kuartal = $this->input->post('kuartal');
-        $bulan = $this->input->post('bulan');
-
-        // $data1 = $this->SalesModel->totalRevenue($tahun, $kuartal, $bulan);
-        // $data2 = $this->PurchaseModel->totalExpanses($tahun, $kuartal, $bulan);
-
-        // $callback = array('sales' => $data1, 'po' => $data2);
-        // echo json_encode($callback);
     }
 }

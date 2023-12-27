@@ -26,7 +26,7 @@
                             <p>Store</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-box"></i>
+                            <i class="fas fa-store"></i>
                         </div>
                     </div>
                 </div>

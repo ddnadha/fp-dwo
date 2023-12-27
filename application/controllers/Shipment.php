@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Produk extends CI_Controller
+class Shipment extends CI_Controller
 {
     function __construct()
     {
@@ -17,9 +17,9 @@ class Produk extends CI_Controller
         $dt['data'] = $this->ShipmentModel->data();
 
         if ($this->session->userdata('logged_in')) {
-            $this->data['view']     = 'page/store';
+            $this->data['view']     = 'page/shipment';
             $this->data['param']    = $dt;
-            $this->data['js']       = 'store.js';
+            $this->data['js']       = 'shipment.js';
             $this->load->view('template/default', $this->data);
         } else {
             redirect('Auth');

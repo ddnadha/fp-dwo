@@ -26,7 +26,7 @@
                             <p>Shipment</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-box"></i>
+                            <i class="fas fa-truck"></i>
                         </div>
                     </div>
                 </div>
