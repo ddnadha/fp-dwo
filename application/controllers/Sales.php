@@ -6,73 +6,31 @@ class Sales extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('SalesModel');
+        $this->load->model("SalesModel", "sales");
     }
 
-    public function index()
-    {
-        $dt = array();
-        $dt['revenue'] = $this->SalesModel->totalRevenue();
-        $dt['total'] = $this->SalesModel->count();
-        $dt['data'] = $this->SalesModel->data();
-
-
-        if ($this->session->userdata('logged_in')) {
-            $this->data['view']    = 'page/sales';
-            $this->data['param']    = $dt;
-            $this->data['js']    = 'sales.js';
-            $this->load->view('template/default', $this->data);
-        } else {
-            redirect('Auth');
+    public function index(){
+        $byCategory = $this->sales->SalesByCategory(isset($_GET['year']) ? $_GET['year'] : null);
+        foreach ($byCategory as $category){
+            $category->{'subcategory'} = $this->sales->SalesBySubcategory($category->category, isset($_GET['year']) ? $_GET['year'] : null);
         }
-    }
 
-    public function salesRev()
-    {
-        $data = $this->SalesModel->salesTahun();
-        $tahun = array();
-
-        foreach ($data as $g) {
-            $obj = new stdClass;
-            $obj->tahun = $g->Year;
-            $obj->total = (int)$g->revenue;
-            $drill = array();
-            $bulan = $this->SalesModel->salesBulan($g->Year);
-
-            foreach ($bulan as $t) {
-                $month_name = date("F", mktime(0, 0, 0, (int) $t->Month, 10));
-
-                array_push($drill, [$month_name, (int)$t->revenue]);
-            }
-
-            $obj->drill = $drill;
-            array_push($tahun, $obj);
+        $byRegion = $this->sales->SalesByRegion(isset($_GET['year']) ? $_GET['year'] : null);
+        foreach ($byRegion as $region){
+            $region->{'territory'} = $this->sales->SalesByTerritory($region->country_region_name, isset($_GET['year']) ? $_GET['year'] : null);
         }
-        echo json_encode($tahun);
-    }
 
-    public function salesTrend()
-    {
-
-        $data = $this->SalesModel->salesTrendTahun();
-        $tahun = array();
-
-        foreach ($data as $g) {
-            $obj = new stdClass;
-            $obj->tahun = $g->Year;
-            $obj->total = (int)$g->trend;
-            $drill = array();
-            $bulan = $this->SalesModel->salesTrendBulan($g->Year);
-
-            foreach ($bulan as $t) {
-                $month_name = date("F", mktime(0, 0, 0, (int) $t->Month, 10));
-
-                array_push($drill, [$month_name, (int)$t->trend]);
-            }
-
-            $obj->drill = $drill;
-            array_push($tahun, $obj);
-        }
-        echo json_encode($tahun);
+        $byShipment = $this->sales->SalesByShipment();
+        
+        $byStore = $this->sales->SalesByStore(isset($_GET['category']) ? $_GET['category'] : null);
+        $this->data['view']     = 'page/sales';
+        $this->data['param']    = [
+            'category'  => $byCategory, 
+            'region'    => $byRegion, 
+            'shipment'  => $byShipment,
+            'store'     => $byStore,
+        ];
+        $this->data['js']       = 'sales.js';
+        $this->load->view('template/default', $this->data);
     }
 }

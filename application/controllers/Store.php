@@ -52,16 +52,4 @@ class Store extends CI_Controller
         }
         echo json_encode($region);
     }
-
-    public function topStore()
-    {
-        $tahun = $this->input->post('tahun');
-        $bulan = $this->input->post('bulan');
-
-        $data = $this->StoreModel->topStore($tahun, $bulan);
-
-        $callback = array('product' => $data);
-
-        echo json_encode($callback);
-    }
 }

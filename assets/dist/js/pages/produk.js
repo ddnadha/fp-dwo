@@ -1,9 +1,9 @@
-$(async function () {
+$(function () {
 	$("#data_produk").DataTable();
 	
-	await $.ajax({
+	 $.ajax({
 		type: "POST",
-		url: "http://localhost/dwo23/Produk/topProdukSales",
+		url: base_url + "/Produk/topProdukSales",
 		data: {
 			tahun: $("#tahun").val(),
 			bulan: $("#bulan").val()
@@ -75,7 +75,7 @@ $(async function () {
 	$("#gen").click(function () {
 		$.ajax({
 			type: "POST",
-			url: "http://localhost/dwo23/Produk/topProdukSales",
+			url: base_url + "/Produk/topProdukSales",
 			data: {
 				tahun: $("#tahun").val(),
 				bulan: $("#bulan").val()
@@ -146,9 +146,9 @@ $(async function () {
 		});
 	});
 
-	await $.ajax({
+	 $.ajax({
 		type: "POST", 
-		url: "http://localhost/dwo23/Produk/topProductPurchase",
+		url: base_url + "/Produk/topProductPurchase",
 		data: {
 			tahun: $("#tahun2").val(),
 			bulan: $("#bulan2").val()
@@ -221,7 +221,7 @@ $(async function () {
 	$("#gen2").click(function () {
 		$.ajax({
 			type: "POST", 
-			url: "http://localhost/dwo23/Produk/topProductPurchase", 
+			url: base_url + "/Produk/topProductPurchase", 
 			data: {
 				tahun: $("#tahun2").val(),
 				bulan: $("#bulan2").val(),
@@ -292,9 +292,9 @@ $(async function () {
 		});
 	});
 
-	await $.ajax({
+	 $.ajax({
 		type: "POST", // Method pengiriman data bisa dengan GET atau POST
-		url: "http://localhost/dwo23/Produk/categorySales", // Isi dengan url/path file php yang dituju
+		url: base_url + "/Produk/categorySales", // Isi dengan url/path file php yang dituju
 		dataType: "json",
 		beforeSend: function (e) {
 			if (e && e.overrideMimeType) {
